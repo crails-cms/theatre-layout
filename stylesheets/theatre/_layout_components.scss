@@ -1,0 +1,101 @@
+@import "variables";
+@import "components/picture";
+
+$header-height: 100px;
+
+body > main {
+  overflow: hidden;
+}
+
+.ct-img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+[data-component="home_header"] {
+  .cms-slider > div {
+    padding: calc(4em + #{$header-height}) 2em 4em;
+    margin-top: -$header-height;
+  }
+
+  .tns-ovh {
+    overflow: visible;
+  }
+    
+  .tns-controls {
+    display: none;
+  }
+
+  button[data-action=stop] {
+    display: none;
+  }
+}
+
+:not(.pure-g) > [data-component="section"] {
+  width: 100%;
+}
+
+[data-component="card"] {
+  > div {
+    margin: 1em;
+    padding: 1em;
+    background: $alt-background-color;
+    box-shadow: 0 0 5px $background-color;
+    text-align: center;
+    > a {
+      text-decoration: none;
+      cursor: pointer;
+      color: $text-color;
+    }
+  }
+}
+
+[data-component="section"] {
+  > div {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+}
+
+[data-component="slide"] {
+  > div {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+}
+
+[data-component="gallery"] {
+  position: relative;
+  img {
+    max-width: 100%;
+  }
+}
+
+[data-component="section"] > div:last-of-type {
+  padding: 2em;
+}
+
+[data-component].background-component {
+  position: relative;
+
+  &:before {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    content: ' ';
+    opacity: 0.8;
+  }
+
+  > div { position: relative; }
+}
+
+[data-component="ribbon"] {
+  > div {
+    position: relative;
+    padding: 2em;
+  }
+
+  > nav {
+    position: relative;
+  }
+}

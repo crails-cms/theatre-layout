@@ -1,0 +1,30 @@
+@import "fonts";
+
+.proudcms-page-editor {
+  position: relative;
+  @import "theatre/content_editor";
+  background-color: black;
+  color: white;
+  @import "theatre/layout_components";
+
+  .proudcms-page-editor-controls {
+    position: relative;
+  }
+
+  [data-component="home_header"] {
+    .cms-slider > div {
+      margin-top: 0 !important;
+      padding-top: 4em;
+    }
+  }
+
+  [data-component="gallery"] {
+    img:not(:first-of-type) {
+      display: none;
+    }
+  }
+
+  [data-component="card"] > div > a {
+    cursor: auto;
+  }
+}

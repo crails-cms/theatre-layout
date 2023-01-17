@@ -1,0 +1,27 @@
+@import "variables";
+
+.date-block {
+  display: flex;
+  align-items: center;
+  color: $accent-color;
+  text-align: left;
+  user-select: none;
+  flex-grow: 0;
+  font-family: "Poppins";
+
+  .date-day {
+    font-style: italic;
+    font-size: 5.375rem;
+    line-height: 1;
+    margin-right: 10%;
+    letter-spacing: -0.05em;
+    font-family: "Old_Standard_TT";
+  }
+
+  .date-short {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    font-size: 100%;
+  }
+}

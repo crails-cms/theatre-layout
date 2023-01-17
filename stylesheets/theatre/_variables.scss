@@ -1,0 +1,44 @@
+$background-color: black;
+$body-background-color: #181616;
+$alt-background-color: #1a1919;
+$text-color: white;
+$accent-color: rgba(201,172,140,1);
+
+@mixin menu-font()
+{
+  font-family: 'Poppins';
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.15em;
+  letter-spacing: 0.08em;
+}
+
+@mixin card()
+{
+  background-color: $alt-background-color;
+  box-shadow: 0 0 8px black;
+  padding: 5% 8% 10%;
+}
+
+@mixin button()
+{
+  $color: $accent-color;
+  display: inline-block;
+  border: 1px $color solid;
+  cursor: pointer;
+  color: $color;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1rem 2.5rem;
+  font-size: 1.25rem;
+  border-radius: 100rem;
+  background-color: transparent;
+  transition: all 80ms ease-in;
+  line-height: 1;
+  &:hover {
+    background-color: $color;
+    color: $background-color;
+  }
+}

@@ -1,0 +1,28 @@
+@import "variables";
+
+body {
+  background-color: $body-background-color;
+  color: white;
+  margin: 0; padding: 0;
+}
+
+header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  padding: 1.25rem 0;
+  z-index: 100;
+}
+
+header:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  opacity: 0.15;
+  transition: opacity 100ms ease-in;
+  border-top: 1px solid currentcolor;
+  bottom: 0; left: 0; right: 0;
+}
+
+main {
+  padding-top: 90px;
+}

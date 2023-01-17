@@ -1,0 +1,102 @@
+#event-list-month-picker {
+  position: fixed;
+  right: 2em;
+  top: 120px;
+  font-size: 1.3em;
+  a {
+    color: $accent-color;
+  }
+}
+
+.event-list {
+  margin: 0 auto;
+  max-width: 960px; // TODO move this away
+  margin-top: 2em;
+  list-style: none;
+
+  .month {
+    color: $accent-color;
+    border-top: 1px $accent-color solid;
+    font-weight: bold;
+    font-size: 1.8em;
+    letter-spacing: 2px;
+    padding-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .event {
+    a {
+      display: flex;
+      text-decoration: none;
+      color: $text-color;
+      > * { flex-shrink: 0; }
+
+      [data-role="thumbnail"] {
+        width: 200px;
+      }
+
+      [data-role="description"] {
+        flex-shrink: 1;
+        padding-left: 2.5em;
+        padding-right: 2em;
+        h4 { padding: 0; margin: 0; font-size: 1.8em; }
+        p { text-align: justify; }
+      }
+    }
+  }
+}
+
+.booking-show {
+  margin: 0 auto;
+  max-width: 960px;
+  margin-top: 2em;
+
+  .header {
+    display: flex;
+    h1 { flex-grow: 2; }
+  }
+
+  #booking {
+    @include card();
+    padding: 2em;
+    margin-top: 2em;
+
+    h4 {
+      font-size: 2em;
+      color: $accent-color;
+      text-transform: uppercase;
+      margin: 0; padding: 0;
+      margin-bottom: 0.5em;
+    }
+
+    .form-group {
+      padding: 1em;
+      label {
+        display: block;
+	&:first-letter { text-transform: uppercase; }
+      }
+
+      input {
+	font-size: 1.3em;
+	margin-top: 0.5em;
+        padding: 0.5em;
+	width: 100%;
+	background-color: $background-color;
+	color: $accent-color;
+	border: 1px $accent-color solid;
+	border-radius: 2px;
+	&:focus-visible {
+          outline: 0;
+          border-bottom-width: 3px;
+          margin-bottom: -2px;
+	}
+      }
+    }
+
+    button {
+      @include button();
+      display: block;
+      margin: 1em auto;
+    }
+  }
+}

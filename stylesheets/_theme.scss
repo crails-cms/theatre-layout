@@ -1,0 +1,18 @@
+@import "theatre/variables";
+@import "theatre/layout";
+@import "theatre/navbar";
+@import "theatre/date_block";
+@import "theatre/tiny-slider";
+@import "theatre/content_editor";
+@import "theatre/layout_components";
+@import "theatre/bookings";
+
+#main-nav-toggle-navigation {
+  display: none;
+}
+
+.breadcrumbs {
+  a { 
+    color: $accent-color;
+  }
+}

@@ -1,0 +1,118 @@
+@import "variables";
+
+#sticky-header {
+  &.stick {
+    height: 72px;
+    
+    .header-wrapper {
+      background-color: black;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0; right: 0;
+      box-shadow: 0 0 5px 0 black;
+    }
+
+    nav {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    @media (max-width: 1200px) {
+      nav {
+        top: 50px !important;
+      }
+    }
+  }
+}
+
+.header-wrapper {
+  position: relative;
+  padding-top: 1rem; padding-bottom: 1rem;
+  padding-right: 15px; padding-left: 15px;
+  display: flex;
+  align-items: center;
+  text-shadow: 0 0 3px black;
+
+  > nav {
+    > ul {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-left: 4rem;
+        a {
+          @include menu-font();
+          color: white;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .toggle-navigation {
+      display: none;
+    }
+
+    > nav {
+      flex-grow: 1;
+    }
+  }
+}
+
+.logo {
+  color: white;
+  margin: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: all 200ms ease-in;
+}
+
+.toggle-navigation {
+  text-transform: uppercase;
+  flex-grow: 2;
+  text-align: right;
+  cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  #main-nav-toggle-navigation {
+    ~ nav {
+      position: absolute;
+      top: 70px;
+      left: 100%;
+      right: 0;
+      transition: left 175ms ease-in;
+      background-color: $background-color;
+      box-shadow: 0 0 5px black;
+      padding-top: 1em;
+
+      > ul {
+        display: block;
+        text-align: right;
+
+        > li {
+          display: block;
+          margin-left: 0;
+          margin-right: 4rem;
+          padding-bottom: 1em;
+        }
+      }
+    }
+
+    &:not(:checked) ~ nav {
+      font-size: 0;
+    }
+
+    &:checked ~ nav {
+      left: 0; right: 0;
+    }
+  }
+}

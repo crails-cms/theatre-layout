@@ -1,0 +1,56 @@
+@import "../variables";
+
+[data-component="picture"] {
+  $margin: 7.5%;
+  $padding-v: 35px;
+  $padding-h: 15px;
+
+  > div { // wrapper
+    padding-top: $padding-v;
+    padding-left: $padding-h;
+    padding-right: $padding-h;
+
+    > div { // frame
+      position: relative;
+      margin-bottom: $padding-v;
+
+      &:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        border: 1px solid $accent-color;
+        top: 0; left: 0;
+        right: $margin; bottom: $margin;
+        z-index: 0;
+        opacity: 0.3;
+      }
+
+      > figure {
+        margin: 0;
+
+        > div { // inner
+          display: inline-block;
+          vertical-align: top;
+          max-width: 100%;
+
+          margin: $margin 0 0 $margin;
+          position: relative;
+          z-index: 1;
+          box-shadow: 1.25rem 1.375rem 4.75rem 0rem rgba(0, 0, 0, 0.92);
+        }
+      }
+    }
+  }
+
+  &.right-side > div > div > figure > div {
+    margin-left: -$margin;
+    margin-right: $margin * 2;
+  }
+
+  img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: top;
+    border-style: none;
+  }
+}
