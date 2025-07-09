@@ -1,36 +1,32 @@
 const components = {};
 
-components.card = class extends PageEditor.GridComponentEditor() {
-  initializeProperties() {
-    this.properties.image = { type: "image", target: this.image, attribute: "src" };
-    this.properties.link = { type: "link", target: this.link, attribute: "href" };
-    super.initializeProperties();
-  }
+PageEditor.fonts = ["Trend", "Oswald", "Belinda", "sans-serif"];
 
+ContentTools.StylePalette.add([
+  new ContentTools.Style("Titre Trendy", "title-style", ["h2","h3"]),
+  new ContentTools.Style("Grand Titre", "main-title-style", ["h2","h3"]),
+  new ContentTools.Style("Titre alternatif", "alt-title-style", ["h2","h3"]),
+  new ContentTools.Style("Titre cursif", "cursive-title-style", ["h2","h3"]),
+  new ContentTools.Style("Sous-titre", "subtitle-style", ["h2","h3","p"]),
+  new ContentTools.Style("Sous-titre alternatif", "main-subtitle-style", ["h2","h3","p"]),
+  new ContentTools.Style("Bouton(s)", "btn-style", ["p"])
+]);
+
+components.card = class extends PageEditor.GridComponentEditor() {
   create() {
     const wrapper = document.createElement("div");
-    const link = document.createElement("a");
-    const image = document.createElement("img");
     const content = document.createElement("div");
 
     content.innerHTML = "<h2>Lorem Ipsum</h2><p>Dolor sit ahmet.</p>";
     content.dataset.editable = '';
-    wrapper.appendChild(link);
-    link.appendChild(content);
-    link.appendChild(image);
+    wrapper.appendChild(content);
     this.root.appendChild(wrapper);
     super.create();
   }
 
   bindElements() {
     this.wrapper = this.root.children[0];
-    this.link = this.wrapper.children[0];
-    this.content = this.link.children[0];
-    this.image = this.link.children[1];
-    this.link.addEventListener("click", event => {
-      event.preventDefault();
-      return false;
-    });
+    this.content = this.wrapper.children[0];
     super.bindElements();
   }
 }
