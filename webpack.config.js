@@ -1,9 +1,9 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./webpackage/index.js",
+  entry: ["./javascripts/index.js"],
   output: {
-    path: path.resolve(__dirname, "javascripts"),
+    path: path.resolve(__dirname, "build/javascripts"),
     filename: "bundle.js"
   }
 };

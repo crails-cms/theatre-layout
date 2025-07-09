@@ -1,15 +1,18 @@
 #include <crails/i18n.hpp>
 #include <crails/cms/models/settings.hpp>
+#include <crails/cms/plugins.hpp>
 #include <crails/cms/views/menu.hpp>
 #include <crails/cms/opengraph.hpp>
 #include <crails/icons/fontawesome.hpp>
-#include "lib/assets.hpp"
+#include "autogen/assets.hpp"
 #include "src/style.hpp"
 
 const char* @yield = nullptr;
 const Crails::Cms::Settings& @settings;
-const Crails::Cms::OpenGraph* @open_graph = nullptr;
+const Crails::Cms::Plugins* plugins = Crails::Cms::Plugins::singleton::get();
 std::string @page_title = settings.get_title();
+std::string @main_menu = "main-menu";
+bool @render_footer;
 TheatreLayoutStyle style;
 
 Crails::FontAwesome::V6 icons;
@@ -20,15 +23,17 @@ Crails::FontAwesome::V6 icons;
     <title><%= page_title %></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <% if (open_graph) do -%>
-      <%= open_graph->render() %>
-    <% end -%>
+    <%= partial("layouts/head") %>
     <% if (settings.get_favicon().length()) do -%>
       <%= tag("link", {{"rel","icon"},{"href", settings.get_favicon()}}) %>
     <% end -%>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
     <%= tag("link", {{"rel","stylesheet"},{"href", icons.stylesheet_cdn_url()}}) %>
     <%= tag("link", {{"rel","stylesheet"},{"href", TheatreLayoutAssets::layout_css}}) %>
+    <% if (plugins && plugins->has_plugins()) do -%>
+      <%= tag("link", {{"rel", "stylesheet"},{"href", Crails::Cms::Plugins::application_css_uri}}) %>
+      <%= tag("script", {{"src", Crails::Cms::Plugins::application_js_uri}}) %>
+    <% end -%>
   </head>
   <body>
     <header>
@@ -40,7 +45,7 @@ Crails::FontAwesome::V6 icons;
             <%= icons.tag(Crails::FontIcon::Menu) %>
           </label>
           <input type="checkbox" id="main-nav-toggle-navigation" />
-          <%= Crails::Cms::RenderMenu("main-menu", this)
+          <%= Crails::Cms::RenderMenu(main_menu, this)
                 .with_direction(Crails::Cms::Menu::Horizontal)
                 .with_style(&style)() %>
         </div>
@@ -51,8 +56,13 @@ Crails::FontAwesome::V6 icons;
       <% if (yield) do -%>
         <%= yield %>
       <% end -%>
+
+      <% if (render_footer) do -%>
+        <%= settings.get_footer() %>
+      <% end -%>
     </main>
     <%= tag("script", {{"src", TheatreLayoutAssets::bundle_js}}) %>
+    <%= tag("script", {}, std::bind(&PluginStyle::javascript_on_content_loaded, &style)) %>
   </body>
 </html>
 

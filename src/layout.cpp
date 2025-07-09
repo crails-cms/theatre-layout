@@ -1,5 +1,6 @@
 #include "layout.hpp"
-#include "lib/assets.hpp"
+#include "autogen/assets.hpp"
+
 TheatreLayout::TheatreLayout()
 {
   name = "theatre-layout";

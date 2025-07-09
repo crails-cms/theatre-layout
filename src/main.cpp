@@ -1,6 +1,6 @@
 #include "layout.hpp"
-#include "lib/assets.hpp"
-#include "lib/renderers/theatre_layout_html_renderer.hpp"
+#include "autogen/assets.hpp"
+#include "autogen/renderers/theatre_layout_html_renderer.hpp"
 
 extern "C"
 {
