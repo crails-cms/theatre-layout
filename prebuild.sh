@@ -1,5 +1,9 @@
 #!/bin/sh
 
+export SASS_COMMAND=node_modules/.bin/sass
+export WEBPACK_COMMAND=node_modules/.bin/webpack
+export CRAILS_AUTOGEN_DIR=autogen
+
 crails templates build \
   -r html \
   -i views \
@@ -11,12 +15,15 @@ crails templates build \
 
 mkdir -p build/sass
 
-node-sass --output-style compressed "stylesheets/layout.scss" > build/sass/layout.css
-node-sass --output-style compressed "stylesheets/admin.scss"  > build/sass/admin.css
+npm install
+$WEBPACK_COMMAND
+
+$SASS_COMMAND -s compressed "stylesheets/layout.scss" > build/sass/layout.css
+$SASS_COMMAND -s compressed "stylesheets/admin.scss"  > build/sass/admin.css
 
 crails-builtin-assets \
-  --inputs "javascripts" "build/sass" "stylesheets/fonts" \
-  --output "lib/assets" \
+  --inputs "build/javascripts" "build/sass" "stylesheets/fonts" \
+  --output "autogen/assets" \
   --classname "TheatreLayoutAssets" \
   --compression "gzip" \
   --uri-root "/cms/plugins/theatre-layout/assets/"
